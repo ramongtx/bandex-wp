@@ -41,7 +41,7 @@
 
             <!--Panorama item one-->
             <phone:PanoramaItem x:Name="hojeItem" Header="hoje" Background="Transparent" Foreground="{StaticResource PhoneForegroundBrush}" Margin="0" DoubleTap="panoramaItem_DoubleTap">
-                <ScrollViewer>
+                <ScrollViewer x:Name="scrollView">
                     <phone:LongListSelector x:Name="longList0" Margin="0,0,-22,0" ItemsSource="{Binding Cardapio}">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
