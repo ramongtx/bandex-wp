@@ -125,32 +125,7 @@ namespace Bandex
             foreach (HtmlNode node in htmlDocument.DocumentNode.SelectNodes("//table[@class='fundo_cardapio']"))
             {
                 string incoming = node.InnerText.Trim();
-                string final = "";
-                string[] cleanList = incoming.Split(new Char[] { '\n' });
-                for (int i = 0; i < cleanList.Count(); i++)
-                {
-                    string partial = cleanList[i].Trim();
-                    if (partial.Count() > 0)
-                    {
-                        final += partial + "\n";
-                    }
-                }
-                string nomeRefeicao = "";
-                switch (refeicao)
-                {
-                    case 0:
-                        nomeRefeicao = "Almoço";
-                        break;
-
-                    case 1:
-                        nomeRefeicao = "Almoço Vegetariano";
-                        break;
-
-                    default:
-                        nomeRefeicao = "Jantar";
-                        break;
-                }
-                cardapios.Add(new MealModel(nomeRefeicao, final));
+                cardapios.Add(new MealModel(incoming, (MealModel.MealTypes) refeicao));
                 refeicao++;
             }
         }
@@ -178,7 +153,7 @@ namespace Bandex
                 llsList[index].Visibility = Visibility.Collapsed;
 
                 WebReader cl = new WebReader();
-                cl.getPage("http://engenheiros.prefeitura.unicamp.br/cardapio.php?d=" + date, readAndSave, index);
+                cl.getPage("http://legiao.prefeitura.unicamp.br/cardapio.php?d=" + date, readAndSave, index);
             }
         }
     }
